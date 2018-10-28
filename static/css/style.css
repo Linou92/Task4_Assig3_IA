@@ -1,0 +1,12 @@
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  padding-top: 3.5rem;
+  background-image: url("bk.jpg");
+}
+
+.jumbotron {
+    background-color:transparent !important; 
+}
+.container {
+    background-image: url("cs.jpg");
+}

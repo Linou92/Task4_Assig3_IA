@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <meta name="google-site-verification" content="y4Ps2e7xQ4zgk_T3L3HxSvSLMGSjAly6Kr0Pkbg7_2E" />
+        <title>Homepage</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" > 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap-theme.min.css" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    
+    </head>
+    
+    <body background="./bk.jpg"  >
+        
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">PD eHealth</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+            <% if(user) { %>
+                <a class="btn btn-outline-light my-2 my-sm-0" type="submit" href="/auth/logout">Logout</a>
+            <% } else { %>   
+                <a class="btn btn-outline-light my-2 my-sm-0" type="submit" href="/auth/login">Login</a>
+            <% } %>
+                
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container" background="bk.jpg">
+          <h1 class="display-5"><center>Authentication service for eHealth application for Parkinson Disease patient data management</center></h1>
+          <p><center>This application is designed for managing data of Parkinsons Disease patients, physicians and researchers. In order to access the application, you must login using either your LinkedIn, Google or Github account. The Role management is based on the following : LinkedIn - Patient, Github - Physician, Google - Researcher.</center></p>
+        </div>
+      </div>
+        <hr>
+      </center></div> <!-- /container -->
+    </main>
+
+    <footer class="container">
+      <p>&copy; Computer Science Department - Linnaeus University. Lina Abu Hijleh 2018-2019.</p>
+    </footer>
+
+    </body>
+</html>
