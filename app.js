@@ -15,6 +15,7 @@ var YoutubeRoutes = require('./routes/youtube-routes');
 var ActivityRoutes = require('./routes/activity-routes');
 var DataRoutes = require('./routes/data-routes');
 var MapRoutes = require('./routes/map-routes');
+var patientProfileRoutes = require('./routes/patientProfile-routes');
 var mongoose = require('mongoose');
 var database = require('./database');
 
@@ -52,7 +53,7 @@ app.use('/youtube', YoutubeRoutes);
 app.use('/activity', ActivityRoutes);
 app.use('/data', DataRoutes);
 app.use('/map', MapRoutes);
-
+app.use('/patient-profile', patientProfileRoutes);
 
 // route for the homepage
 app.get('/', (req, res) => {

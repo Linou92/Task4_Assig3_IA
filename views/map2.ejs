@@ -8,16 +8,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap-theme.min.css" >
         <link rel="stylesheet" href="/static/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
-
-        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
-        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
-        crossorigin=""></script>
 
         <style>
             #map{
               height:500px;
-              width:100;
+              width:100%;
             }
           </style>
     
@@ -55,22 +50,18 @@
       </div>
 
        <div id="map"></div>
+        <script>
+          var map;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 8
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLsV68-rOnIhP8RYCJqIX178QCPLG6AcI&callback=initMap" async defer>
+        </script>
 
-       <script>
-          var map = L.map('map').setView([59.334591, 18.063240], 5);
-          var marker = L.marker([56.879, 14.8059]).addTo(map);
-          marker.bindPopup("<a href='patient-profile'>Patient 1</a>").openPopup();
-          var marker1 = L.marker([58.4108, 15.6214]).addTo(map);
-          marker1.bindPopup("<a href='patient-profile'>Patient 2</a>").openPopup();
-
-          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 18,
-          id: 'mapbox.streets',
-          accessToken: 'pk.eyJ1IjoibGluYTkyIiwiYSI6ImNqbnU4cXFucjB5eTEzd2w4eWU1NXcxNmwifQ.4q46THCEclG6RBSVx8wsuA'
-          }).addTo(map);
-
-        </script>  
 
         <hr>
       </center></div> <!-- /container -->

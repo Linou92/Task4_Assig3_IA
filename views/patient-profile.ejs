@@ -3,11 +3,12 @@
     <head>
 
         <meta name="google-site-verification" content="y4Ps2e7xQ4zgk_T3L3HxSvSLMGSjAly6Kr0Pkbg7_2E" />
-        <title>Activities</title>
+        <title>Patient Profile</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap-theme.min.css" >
         <link rel="stylesheet" href="/static/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <script type="text/javascript" src="ejs_production.js"></script>
 
       
@@ -38,6 +39,18 @@
 
     </script>
 
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        crossorigin=""></script>
+
+        <style>
+            #map{
+              height:500px;
+              width:50%;
+            }
+          </style>
     </head>
     
     <body>
@@ -67,31 +80,59 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-5"><center>Patient's therapy</center></h1>
+
+              <div class="row">           
+              <div class="col-sm-3" align="left">
+                <img src="avatar.jpg" alt="avatar" class="rounded-circle" width="100%" height="100%" />
+              </div>
+              <div class="col-sm-9" align="center">
+                <div align="left" style="text-align: center;"><span class="col-sm"><b>Username</b></span><span class="col-sm">:</span><span class="col-sm">blabla</span></div>
+                <div align="left" style="text-align: center;"><span class="col-sm"><b>Role</b></span><span class="col-sm">:</span><span class="col-sm">blabla</span></div>
+                <div align="left" style="text-align: center;"><span class="col-sm"><b>Email</b></span><span class="col-sm">:</span><span class="col-sm">blabla</span></div>
+                <div align="left" style="text-align: center;"><span class="col-sm"><b>Organization Name</b></span><span class="col-sm">:</span><span class="col-sm">blabla</span></div>
+              </div>
+            </div>
+            </div>
+
+
+          <h3 class="display-5"><center>Patient's Profile</center></h3>
+        </div>
+      </div>
+      
+      <div class="container"><center>
+        <h5 class="display-5"><center>Data</center></h5>
         </div>
       </div>
 
-      <center><h5> Therapy </h5></center>
       <center><div id="table_div"></div></center>
 
-      <center><h5> Hearbeat chart </h5></center>
-      <!--<div><center>
-      <table border="10px solid">
-        <tr>
-          <th>Name</th> 
-          <th>Dosage</th>
-        </tr>
-      
-      <% for(var i=0; i < activities.length; i++) { %>
-        <tr>
-         <td><%= activities[i].Name %></td>
-         <td><%= activities[i].Dosage %></td>
-        </tr>
-      <% } %>
-      </table>
-    </center></div>
         <hr>
-      </center></div>--> <!-- /container -->
+      </center></div>
+
+      <center><h5> Comments </h5></center>
+
+      
+      <center><h5>Localisation</h5></center>
+
+       <center><div id="map"></div></center>
+
+       <script>
+          var map = L.map('map').setView([59.334591, 18.063240], 5);
+          var marker = L.marker([56.879, 14.8059]).addTo(map);
+          
+
+          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox.streets',
+          accessToken: 'pk.eyJ1IjoibGluYTkyIiwiYSI6ImNqbnU4cXFucjB5eTEzd2w4eWU1NXcxNmwifQ.4q46THCEclG6RBSVx8wsuA'
+          }).addTo(map);
+
+        </script>
+
+         <center><h5>Chart</h5></center> 
+         <center><div id="chart"></div></center>
+
     </main>
 
     <footer class="container">
