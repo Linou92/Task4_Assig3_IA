@@ -23,15 +23,16 @@ passport.use(
 		clientSecret: keys.google.clientSecret,
 		callbackURL: '/auth/google/redirect'
 }, (accessToken, refreshToken, profile, done) => {
-		User.findOne({googleId: profile.id}).then((currentUser) => {
+		User.findOne({userid: profile.id}).then((currentUser) => {
       if(currentUser){
         console.log('google user is: ', currentUser);
         done(null, currentUser);
       }
       else{
         new User({
-          googleId: profile.id,
-          username: profile.displayName
+          userid: profile.id,
+          username: profile.displayName,
+          role:'Researcher'
         }).save().then((newUser) => {
           console.log('created new google user: ', newUser);
           done(null, newUser);
@@ -49,15 +50,17 @@ passport.use(
     clientSecret: keys.github.clientSecret,
     callbackURL: '/auth/github/redirect'
 }, (accessToken, refreshToken, profile, done) => {
-    User.findOne({githubId: profile.id}).then((currentUser) => {
+  console.log(profile);
+    User.findOne({userid: profile.id}).then((currentUser) => {
       if(currentUser){
         console.log('github user is: ', currentUser);
         done(null, currentUser);
       }
       else{
         new User({
-          githubId: profile.id,
-          username: profile.displayName
+          userid: profile.id,
+          username: profile.displayName,
+          role:'Doctor'
         }).save().then((newUser) => {
           console.log('created new github user: ', newUser);
           done(null, newUser);
@@ -76,15 +79,16 @@ passport.use(
     callbackURL: '/auth/linkedin/redirect',
     scope: ['r_emailaddress', 'r_basicprofile']
 }, (accessToken, refreshToken, profile, done) => {
-    User.findOne({linkedinId: profile.id}).then((currentUser) => {
+    User.findOne({userid: profile.id}).then((currentUser) => {
       if(currentUser){
         console.log('linkedin user is: ', currentUser);
         done(null, currentUser);
       }
       else{
         new User({
-          linkedinId: profile.id,
-          username: profile.displayName
+          userid: profile.id,
+          username: profile.displayName,
+          role:'Patient'
         }).save().then((newUser) => {
           console.log('created new linkedin user: ', newUser);
           done(null, newUser);

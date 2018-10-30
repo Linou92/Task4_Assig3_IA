@@ -2,7 +2,8 @@ const PORT = process.env.PORT || 3000;
 var express = require('express');
 var cookieSession = require('cookie-session');
 var passport = require('passport');
-
+var mongodb = require('./mongo')();
+var bodyParser = require('body-parser');
 // importing routes
 var authRoutes = require('./routes/auth-routes');
 var passportSetup = require('./configs/passport-setup');
@@ -15,9 +16,10 @@ var YoutubeRoutes = require('./routes/youtube-routes');
 var ActivityRoutes = require('./routes/activity-routes');
 var DataRoutes = require('./routes/data-routes');
 var MapRoutes = require('./routes/map-routes');
-var patientProfileRoutes = require('./routes/patientProfile-routes');
 var mongoose = require('mongoose');
-var database = require('./database');
+var patientProfileRoutes = require('./routes/patientProfile-routes');
+var ActivityRoutes2 = require('./routes/activity2-routes');
+//var database = require('./database');
 
 
 var app = express();
@@ -27,7 +29,10 @@ var app = express();
 app.set('view engine', 'ejs');
 
 app.use(express.static('views'));
-
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 // set up session cookies
 app.use(cookieSession({
 	maxAge: 24*60*60*1000,
@@ -54,6 +59,7 @@ app.use('/activity', ActivityRoutes);
 app.use('/data', DataRoutes);
 app.use('/map', MapRoutes);
 app.use('/patient-profile', patientProfileRoutes);
+app.use('/activity2', ActivityRoutes2);
 
 // route for the homepage
 app.get('/', (req, res) => {

@@ -9,6 +9,7 @@ router.get('/login', (req, res) => {
 
 // logout auth route
 router.get('/logout', (req, res) => {
+	//req._passport.session ={};
 	req.logout();
   	res.redirect('/');
 });

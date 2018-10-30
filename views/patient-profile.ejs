@@ -19,18 +19,20 @@
 
         function drawTable() {
           var data = new google.visualization.DataTable();
-          data.addColumn('string', 'Name');
-          data.addColumn('number', 'Salary');
-          data.addColumn('boolean', 'Full Time Employee');
+          data.addColumn('string', 'Username');
+          data.addColumn('string', 'Role');
+          data.addColumn('string', 'Exercise per day');
+          data.addColumn('string', 'Exercise per week');
+          data.addColumn('string', 'Exercise per month');
+          data.addColumn('string', 'Recommended time');
+          data.addColumn('string', 'Medicine name');
+          data.addColumn('string', 'Dosage');
+          data.addColumn('boolean', 'Completed');
           data.addRows([
-            ['Mike',  {v: 10000, f: '$10,000'}, true],
-            ['Jim',   {v:8000,   f: '$8,000'},  false],
-            ['Alice', {v: 12500, f: '$12,500'}, true],
-            ['Bob',   {v: 7000,  f: '$7,000'},  true],
-            ['Mike',  {v: 10000, f: '$10,000'}, true],
-            ['Jim',   {v:8000,   f: '$8,000'},  false],
-            ['Alice', {v: 12500, f: '$12,500'}, true],
-            ['Bob',   {v: 7000,  f: '$7,000'},  true]
+            ['Mike', 'Patient',  '2',  '2',  '2', '7AM','medicine 1', '400 ml',true],
+            ['Mike', 'Patient',  '2',  '2',  '2','7AM','medicine 1', '400 ml',false],
+            ['Mike', 'Patient','2',  '2', '2', '7AM','medicine 1', '400 ml',true],
+            ['Mike', 'Patient', '2', '2', '2', '7AM','medicine 1', '400 ml',false]
         ]);
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
@@ -110,11 +112,16 @@
       </center></div>
 
       <center><h5> Comments </h5></center>
-
+      <form>
+        <div class="form-group">
+        <center><label for="inputdefault">Add your comment here:</label></center>
+        <input class="form-control" id="inputdefault" type="text">
+        </div>
+        <center><button type="submit" class="btn btn-primary">Submit</button></center>
+      </form>
       
       <center><h5>Localisation</h5></center>
-
-       <center><div id="map"></div></center>
+      <center><div id="map"></div></center>
 
        <script>
           var map = L.map('map').setView([59.334591, 18.063240], 5);
@@ -131,8 +138,9 @@
         </script>
 
          <center><h5>Chart</h5></center> 
-         <center><div id="chart"></div></center>
-
+          <div class="col-sm-12">
+            <div id="container"></div>
+         </div>
     </main>
 
     <footer class="container">
