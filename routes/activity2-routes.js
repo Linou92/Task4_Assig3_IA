@@ -41,16 +41,6 @@ connection.getConnection((err, con)=>{
     });
 
 
-
-// router.get('/', authCheck, (req, res) => {
-
-// 	res.render('activity', {
-// 		user: req.user,
-//         activities:activities,
-//         users:[]
-// 	}); 
-// });
-
 router.get('/',authCheck,(req,res)=>{
     let query = {
         role:'Patient',

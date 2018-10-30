@@ -24,7 +24,6 @@ else{
 	res.render('map', {user: req.user,latitude:"",longitude:""})
 }
 	
-
 	//res.render('map', {user: req.user});
 });
 

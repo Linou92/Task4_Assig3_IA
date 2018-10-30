@@ -15,16 +15,15 @@ router.post('/addComment',authCheck,(req,res)=>{
 	{$push:{
 			comments:{body :req.body.comment,addedbyId:'Researcher1'}
 	}}).then(x=>{
-		console.log(x);
-		res.json({success:'Comment Added'});
+		next();
 	}).catch(y=>{
-		res.json({success:'Comment Added'});
+		res.redirect(`/patient-profile/${req.body.patientId}`);
 	});
 	
 })
 
-router.get('/:id?', authCheck, (req, res) => {
-	var id = req.params.id;
+function renderPage(req, res){
+	var id = req.params.id?req.params.id:req.body.patientId;
 
 	if(id){
 		userdetails.findOne({username:id}).then(x=>{
@@ -42,6 +41,8 @@ router.get('/:id?', authCheck, (req, res) => {
 		res.render('patient-profile', {user: req.user});
 	}
 	
-});
+}
+
+router.get('/:id?', authCheck,renderPage );
 
 module.exports = router;

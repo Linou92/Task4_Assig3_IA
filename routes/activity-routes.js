@@ -40,18 +40,6 @@ connection.getConnection((err, con)=>{
     con.release();
     });
 
-
-
-// router.get('/', authCheck, (req, res) => {
-
-// 	res.render('activity', {
-// 		user: req.user,
-//         activities:activities,
-//         users:[]
-// 	}); 
-// });
-
-
 router.get('/heartratedata/:id?',(req,res)=>{
     var username =req.params.id?req.params.id:'Q0TawBOYDG';
     //console.log(username);

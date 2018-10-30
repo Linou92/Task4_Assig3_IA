@@ -19,7 +19,6 @@ var MapRoutes = require('./routes/map-routes');
 var mongoose = require('mongoose');
 var patientProfileRoutes = require('./routes/patientProfile-routes');
 var ActivityRoutes2 = require('./routes/activity2-routes');
-//var database = require('./database');
 
 
 var app = express();

@@ -3,22 +3,17 @@
     <head>
 
         <meta name="google-site-verification" content="y4Ps2e7xQ4zgk_T3L3HxSvSLMGSjAly6Kr0Pkbg7_2E" />
-        <title>Patient</title>
+        <title>Patient Profile</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap-theme.min.css" >
         <link rel="stylesheet" href="/static/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-         <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-
- <script type="text/javascript" src="ejs_production.js"></script>
-
-      
+         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+        <script type="text/javascript" src="ejs_production.js"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
         <script type="text/javascript">
         google.charts.load('current', {'packages':['table']});
         google.charts.setOnLoadCallback(drawTable);
@@ -35,20 +30,19 @@
           data.addColumn('string', 'Dosage');
           data.addColumn('boolean', 'Completed');
           data.addRows([
-            ['Mike', 'Patient',  '2',  '2',  '2', '7AM','medicine 1', '400 ml',true],
-            ['Mike', 'Patient',  '2',  '2',  '2','7AM','medicine 1', '400 ml',false],
-            ['Mike', 'Patient','2',  '2', '2', '7AM','medicine 1', '400 ml',true],
-            ['Mike', 'Patient', '2', '2', '2', '7AM','medicine 1', '400 ml',false]
+            ['Mike', 'Patient',  '2',  '2',  '15', '7AM','medicine 1', '400 ml',true],
+            ['Mike', 'Patient',  '3',  '7',  '30','9AM','medicine 1', '400 ml',false],
+            ['Mike', 'Patient','1',  '7', '23', '11AM','medicine 1', '400 ml',true],
+            ['Mike', 'Patient', '2', '2', '2', '5PM','medicine 1', '400 ml',false]
         ]);
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
-        table.draw(data, {showRowNumber: true, width: '70%', height: '100%'});
+        table.draw(data, {showRowNumber: true, width: '70%', height: '100%', title: 'Your therapy'});
       }
 
     </script>
 
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
-
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
         integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin=""></script>
@@ -97,12 +91,13 @@
               </div>
             </div>
 
+              <!-- PROFILE -->
               <div class="row">           
               <div class="col-sm-3" align="left">
                 <img src="/avatar.jpg" alt="avatar" class="rounded-circle" width="100%" height="100%" />
               </div>
               <div class="col-sm-9" align="center">
-                                <table class="table table-striped">
+                <table class="table table-striped">
                 <tbody>
                   <tr>
                     <td>User Name :</td>
@@ -125,7 +120,6 @@
                   </tr>
                 </tbody>
                 </table>
-
               </div>
             </div>
             </div>
@@ -134,28 +128,40 @@
         </div>
       </div>
        <div class="container"><center>
-        <h5 class="display-5"><center>Data</center></h5>
+        <h5 class="display-5"><center>Patient's therapy</center></h5>
         </div>
       </div>
 
+      <!-- THERAPY TABLE -->
       <center><div id="table_div"></div></center>
-
-        <hr>
+      <hr>
       </center></div>
+      <hr>
 
-         <center><h5> Comments </h5></center>
+      <!-- COMMENT -->  
+      <center><h5> Comments </h5></center>
+      <center>
+         <% for(var i=0;i<user.comments.length;i++){ %>
+             <div class="row">
+                <div class="col-md-12">
+                        <%= user.comments[i].body %>
+                    </div>
+             </div>
+            <% } %>
+            </center>
       <form>
         <div class="form-group">
         <center><label for="inputdefault">Add your comment here:</label></center>
-        <input class="form-control" id="inputdefault" type="text">
+        <input class="form-control" id="comment" type="text">
         </div>
         <center><button id="addComment" class="btn btn-primary">Submit</button></center>
       </form>
-      
         <hr>
       </div>  
+      <hr>
 
-      <center><h5>Localisation</h5></center>
+      <!-- LOCALISATION -->
+      <center><h5>Patient's localisation</h5></center>
       <center><div id="map"></div></center>
 
        <script>
@@ -171,140 +177,142 @@
           }).addTo(map);
 
         </script>
+        <hr>
 
- 
-     <div class="col-sm-12">
+        <!-- HEARBEAT CHART -->
+     <   <div class="col-sm-12">
+          <h3><center>Patient's heartbeat chart</center></h3>
             <div id="container"></div>
          </div>
-    
 
-    <footer class="container">
-      <p>&copy; Computer Science Department - Linnaeus University. Lina Abu Hijleh 2018-2019.</p>
-    </footer>
-<script>
-      $(function () {
-    $(document).ready(function() {  
-        var heartrateUrl='/activity/heartratedata/';
-        $('#addComment').bind('click',function(){
-            var comment = $('#comment').val();
-            var patientId =$('#patientId').val();
-          $.ajax({
-  method: "POST",
-  url: "/patient-profile/addComment",
-  data: { comment: "comment", patientId: patientId }
-})
-  .done(function( msg ) {
-    $('#comment').val('');
-  });
-        });
-        $( ".selectuser" ).click(function(item){
-           heartrateUrl='/activity/heartratedata/'+ $(item.target).text();
-        });
-        Highcharts.setOptions({
-            global: {
-                useUTC: false
-            }
-        });
-    
-        var chart;
-        $('#container').highcharts({
-            chart: {
-                type: 'line',
-                animation: Highcharts.svg, // don't animate in old IE
-                marginRight: 10,
-                events: {
-                    load: function() {
-    
-                        // set up the updating of the chart each second
-                        var series = this.series[0];
-                        setInterval(function() {
-                              $.get(heartrateUrl).
-                     then(result=>{
-                         console.log(result);
-                         let data = result.map(i=>{
-                            let out ={ x:parseInt(i.timestamp),
-                             y:parseInt(i.value)
-                            };
-                            
-                         return out;
-                         })
-                    
-                        for(var i=0;i<data.length;i++){
-                            series.addPoint([data[i].x,data[i].y], true, true);
-                            }
-                     }).catch(err=>{console.log(err)});
-                        }, 2000);
-                    }
+      <script>
+          $(function () {
+        $(document).ready(function() {  
+            var heartrateUrl='/activity/heartratedata/';
+            $('#addComment').bind('click',function(){
+                var comment = $('#comment').val();
+                var patientId =$('#patientId').val();
+              $.ajax({
+      method: "POST",
+      url: "/patient-profile/addComment",
+      data: { comment: comment, patientId: patientId  }
+    })
+      .done(function( msg ) {
+        $('#comment').val('');
+      });
+            });
+            $( ".selectuser" ).click(function(item){
+               heartrateUrl='/activity/heartratedata/'+ $(item.target).text();
+            });
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false
                 }
-            },
-            title: {
-                text: 'Heart Rate'
-            },
-            xAxis: {
-               title: {
-                    text: 'Time'
-                },
-                type: 'datetime',
-                tickPixelInterval: 150
-            },
-            yAxis: {
-                title: {
-                    text: 'Number of Beats'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                formatter: function() {
-                        return '<b>'+ this.series.name +'</b><br/>'+
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
-                        Highcharts.numberFormat(this.y, 2);
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
-            series: [{
-                name: 'Heart rate per second',
-                 data: (function() {
-                     $.get('/activity/heartratedata').
-                     then(result=>{
-                         console.log(result);
-                         let data = result.map(i=>{
-                            let out ={ x:i.timestamp,
-                             y:i.value
-                            };
-                            return out;
-                         })
-                        return data;
+            });
+        
+            var chart;
+            $('#container').highcharts({
+                chart: {
+                    type: 'line',
+                    animation: Highcharts.svg, // don't animate in old IE
+                    marginRight: 10,
+                    events: {
+                        load: function() {
+        
+                            // set up the updating of the chart each second
+                            var series = this.series[0];
+                            setInterval(function() {
+                                  $.get(heartrateUrl).
+                         then(result=>{
+                             console.log(result);
+                             let data = result.map(i=>{
+                                let out ={ x:parseInt(i.timestamp),
+                                 y:parseInt(i.value)
+                                };
+                                
+                             return out;
+                             })
                         
-                     }).catch(err=>{console.log(err)});
-           
-                    // generate an array of random data
-                     var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-    
-                    for (i = -19; i <= 0; i++) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
-                        });
+                            for(var i=0;i<data.length;i++){
+                                series.addPoint([data[i].x,data[i].y], true, true);
+                                }
+                         }).catch(err=>{console.log(err)});
+                            }, 2000);
+                        }
                     }
-                    console.log(data);
-                    return data;
-                })()
-            }]
+                },
+                title: {
+                    text: 'Heart Rate'
+                },
+                xAxis: {
+                   title: {
+                        text: 'Time'
+                    },
+                    type: 'datetime',
+                    tickPixelInterval: 150
+                },
+                yAxis: {
+                    title: {
+                        text: 'Number of Beats'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    formatter: function() {
+                            return '<b>'+ this.series.name +'</b><br/>'+
+                            Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+                            Highcharts.numberFormat(this.y, 2);
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Heart rate per second',
+                     data: (function() {
+                         $.get('/activity/heartratedata').
+                         then(result=>{
+                             console.log(result);
+                             let data = result.map(i=>{
+                                let out ={ x:i.timestamp,
+                                 y:i.value
+                                };
+                                return out;
+                             })
+                            return data;
+                            
+                         }).catch(err=>{console.log(err)});
+               
+                        // generate an array of random data
+                         var data = [],
+                            time = (new Date()).getTime(),
+                            i;
+        
+                        for (i = -19; i <= 0; i++) {
+                            data.push({
+                                x: time + i * 1000,
+                                y: Math.random()
+                            });
+                        }
+                        console.log(data);
+                        return data;
+                    })()
+                }]
+            });
         });
+        
     });
-    
-});
       </script>
+
+      <footer class="container">
+      <p>&copy; Computer Science Department - Linnaeus University. Lina Abu Hijleh & Rasha Al-Ogaili 2018-2019.</p>
+    </footer> 
     </body>
 </html>

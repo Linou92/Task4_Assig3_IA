@@ -19,10 +19,6 @@ var authCheck = (req, res, next) => {
 };
 
 router.get('/', authCheck, (req, res) => {
-	// req.body.userDetails = {
-	// 	username:req.user,
-	// 	role:'Researcher'
-	// };
 	req._passport.session.role='Researcher';
 	res.render('researcher', {user: req._passport.session.loggedInDetails});
 });
