@@ -16,7 +16,8 @@ var userSchema = new Schema({
     ex_day:String,
     ex_month:String,
     ex_week:String,
-    ex_time:String
+    ex_time:String,
+    comments:Array
 });
 
 var User = mongoose.model('userdetail', userSchema);
