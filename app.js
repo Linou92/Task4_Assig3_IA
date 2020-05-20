@@ -69,6 +69,7 @@ app.get('/', (req, res) => {
 // listen to port nb
 app.listen(PORT);
 console.log("App server running on port ${PORT}");
+console.log(PORT);
 
 
 
