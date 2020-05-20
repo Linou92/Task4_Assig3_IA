@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000 || 8080;
 var express = require('express');
 var cookieSession = require('cookie-session');
 var passport = require('passport');
