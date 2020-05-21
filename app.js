@@ -1,4 +1,5 @@
-const PORT = process.env.PORT || 3000 || 8080;
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var express = require('express');
 var cookieSession = require('cookie-session');
 var passport = require('passport');
@@ -67,9 +68,9 @@ app.get('/', (req, res) => {
 
 
 // listen to port nb
-app.listen(PORT);
+app.listen(port,ip);
 console.log("App server running on port ${PORT}");
-console.log(PORT);
+console.log(port,ip);
 
 
 
